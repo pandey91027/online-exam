@@ -1,0 +1,7 @@
+# virtual folder
+venv/
+db.sqlite3
+
+# zip files
+*.zip
+
