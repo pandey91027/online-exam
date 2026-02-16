@@ -1,0 +1,61 @@
+{% extends 'exam/base.html' %}
+{% block content %}
+
+<div class="flex justify-between items-center mb-6">
+    <h1 class="text-2xl font-bold">My Exams</h1>
+    <a href="{% url 'exam:exam_create' %}" class="bg-indigo-600 hover:bg-indigo-700 text-white px-4 py-2 rounded">
+        + Create Exam
+    </a>
+</div>
+
+<div class="overflow-x-auto">
+    <table class="min-w-full bg-white shadow rounded-lg">
+        <thead class="bg-gray-200 text-left">
+            <tr>
+                <th class="px-4 py-3 font-semibold">Title</th>
+                <th class="px-4 py-3 font-semibold">Duration</th>
+                <th class="px-4 py-3 font-semibold text-center">Actions</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            {% for exam in exams %}
+            <tr class="border-t hover:bg-gray-50">
+                <td class="px-4 py-3 align-middle">
+                    {{ exam.title }}
+                </td>
+
+                <td class="px-4 py-3 align-middle">
+                    {{ exam.duration_minutes }} min
+                </td>
+
+                <td class="px-4 py-3 align-middle text-center space-x-3">
+                    <a href="{% url 'exam:exam_update' exam.id %}" class="text-blue-600 hover:underline">
+                        Edit
+                    </a>
+
+                    <a href="{% url 'exam:question_add' exam.id %}" class="text-green-600 hover:underline">
+                        Add Question
+                    </a>
+
+                    <a href="{% url 'exam:exam_delete' exam.id %}" class="text-red-600 hover:underline">
+                        Delete
+                    </a>
+                    <a href="{% url 'exam:question_list' exam.id %}" class="text-indigo-600 hover:underline">
+                        View Questions
+                    </a>
+
+                </td>
+            </tr>
+            {% empty %}
+            <tr>
+                <td colspan="3" class="px-4 py-6 text-center text-gray-500">
+                    No exams created yet.
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+{% endblock %}

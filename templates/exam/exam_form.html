@@ -1,0 +1,65 @@
+{% extends 'exam/base.html' %}
+{% block content %}
+
+<h2 class="text-2xl font-bold mb-6">Create / Update Exam</h2>
+
+<form method="post" class="bg-white p-8 rounded-xl shadow-md space-y-5">
+    {% csrf_token %}
+
+    <!-- Title -->
+    <div>
+        <label class="block text-sm font-medium mb-1">Title</label>
+        <input type="text" name="title" value="{{ form.title.value|default_if_none:'' }}"
+            class="w-full border border-gray-300 px-3 py-2 rounded-lg">
+    </div>
+
+    <!-- Description -->
+    <div>
+        <label class="block text-sm font-medium mb-1">Description</label>
+        <textarea name="description" class="w-full border border-gray-300 px-3 py-2 rounded-lg"
+            rows="3">{{ form.description.value|default_if_none:'' }}</textarea>
+    </div>
+
+    <!-- Total Marks -->
+    <div>
+        <label class="block text-sm font-medium mb-1">Total Marks</label>
+        <input type="number" name="total_marks" value="{{ form.total_marks.value|default_if_none:'' }}"
+            class="w-full border border-gray-300 px-3 py-2 rounded-lg">
+    </div>
+
+    <!-- Duration -->
+    <div>
+        <label class="block text-sm font-medium mb-1">Duration (minutes)</label>
+        <input type="number" name="duration_minutes" value="{{ form.duration_minutes.value|default_if_none:'' }}"
+            class="w-full border border-gray-300 px-3 py-2 rounded-lg">
+    </div>
+
+    <!-- Start Time -->
+    <div>
+        <label class="block text-sm font-medium mb-1">Start Time</label>
+        <input type="datetime-local" name="start_time" value="{{ form.start_time.value|default_if_none:'' }}"
+            class="w-full border border-gray-300 px-3 py-2 rounded-lg">
+    </div>
+
+    <!-- End Time -->
+    <div>
+        <label class="block text-sm font-medium mb-1">End Time</label>
+        <input type="datetime-local" name="end_time" value="{{ form.end_time.value|default_if_none:'' }}"
+            class="w-full border border-gray-300 px-3 py-2 rounded-lg">
+    </div>
+
+    <!-- Is Active -->
+    <div class="flex items-center gap-2">
+        <input type="checkbox" name="is_active" {% if form.is_active.value %}checked{% endif %} class="h-4 w-4">
+        <label class="text-sm">Exam Active</label>
+    </div>
+
+    <!-- Submit -->
+    <div class="flex justify-end">
+        <button type="submit" class="bg-indigo-600 hover:bg-indigo-700 text-white px-6 py-2 rounded-lg">
+            Save Exam
+        </button>
+    </div>
+</form>
+
+{% endblock %}

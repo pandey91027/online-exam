@@ -1,0 +1,76 @@
+{% extends 'exam/base.html' %}
+{% block content %}
+
+<h2 class="text-2xl font-bold mb-6 text-gray-800">
+    Add Question – {{ exam.title }}
+</h2>
+
+<form method="post" class="bg-white p-8 rounded-xl shadow-md space-y-5">
+    {% csrf_token %}
+
+    <!-- Question Text -->
+    <div>
+        <label class="block text-sm font-medium mb-1">Question</label>
+        <textarea name="question_text" rows="3" class="w-full border border-gray-300 px-3 py-2 rounded-lg"
+            required>{{ form.question_text.value|default_if_none:'' }}</textarea>
+    </div>
+
+    <!-- Option A -->
+    <div>
+        <label class="block text-sm font-medium mb-1">Option A</label>
+        <input type="text" name="option_a" value="{{ form.option_a.value|default_if_none:'' }}"
+            class="w-full border border-gray-300 px-3 py-2 rounded-lg" required>
+    </div>
+
+    <!-- Option B -->
+    <div>
+        <label class="block text-sm font-medium mb-1">Option B</label>
+        <input type="text" name="option_b" value="{{ form.option_b.value|default_if_none:'' }}"
+            class="w-full border border-gray-300 px-3 py-2 rounded-lg" required>
+    </div>
+
+    <!-- Option C -->
+    <div>
+        <label class="block text-sm font-medium mb-1">Option C</label>
+        <input type="text" name="option_c" value="{{ form.option_c.value|default_if_none:'' }}"
+            class="w-full border border-gray-300 px-3 py-2 rounded-lg" required>
+    </div>
+
+    <!-- Option D -->
+    <div>
+        <label class="block text-sm font-medium mb-1">Option D</label>
+        <input type="text" name="option_d" value="{{ form.option_d.value|default_if_none:'' }}"
+            class="w-full border border-gray-300 px-3 py-2 rounded-lg" required>
+    </div>
+
+    <!-- Correct Option -->
+    <div>
+        <label class="block text-sm font-medium mb-1">Correct Option</label>
+        <select name="correct_option" class="w-full border border-gray-300 px-3 py-2 rounded-lg" required>
+            <option value="">Select correct option</option>
+            <option value="A" {% if form.correct_option.value == "A" %}selected{% endif %}>Option A</option>
+            <option value="B" {% if form.correct_option.value == "B" %}selected{% endif %}>Option B</option>
+            <option value="C" {% if form.correct_option.value == "C" %}selected{% endif %}>Option C</option>
+            <option value="D" {% if form.correct_option.value == "D" %}selected{% endif %}>Option D</option>
+        </select>
+    </div>
+
+    <!-- Marks -->
+    <div>
+        <label class="block text-sm font-medium mb-1">Marks</label>
+        <input type="number" name="marks" value="{{ form.marks.value|default_if_none:1 }}"
+            class="w-full border border-gray-300 px-3 py-2 rounded-lg" min="1" required>
+    </div>
+
+    <!-- Hidden Exam -->
+    <input type="hidden" name="exam" value="{{ exam.id }}">
+
+    <!-- Submit -->
+    <div class="flex justify-end">
+        <button type="submit" class="bg-green-600 hover:bg-green-700 text-white px-6 py-2 rounded-lg transition">
+            Add Question
+        </button>
+    </div>
+</form>
+
+{% endblock %}
