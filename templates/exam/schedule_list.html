@@ -1,0 +1,61 @@
+{% extends "exam/base.html" %}
+{% block content %}
+
+<div class="flex justify-between mb-6">
+    <h1 class="text-2xl font-bold">Scheduled Exams</h1>
+    <a href="{% url 'exam:schedule_create' %}" class="bg-indigo-600 text-white px-4 py-2 rounded hover:bg-indigo-700">
+        + Schedule Exam
+    </a>
+</div>
+
+<div class="bg-white shadow rounded-lg overflow-hidden">
+    <table class="w-full">
+        <thead class="bg-gray-100">
+            <tr>
+                <th class="p-3 text-left">Exam</th>
+                <th class="p-3 text-left">Group</th>
+                <th class="p-3 text-left">Date</th>
+                <th class="p-3 text-left">Start</th>
+                <th class="p-3 text-left">End</th>
+                <th class="p-3 text-left">Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for schedule in schedules %}
+            <tr class="border-t hover:bg-gray-50">
+                <td class="p-3">{{ schedule.exam }}</td>
+                <td class="p-3">{{ schedule.group }}</td>
+                <td class="p-3">{{ schedule.date }}</td>
+                <td class="p-3">{{ schedule.start_time }}</td>
+                <td class="p-3">{{ schedule.end_time }}</td>
+                <td class="p-3 space-x-2">
+
+                    {% if not schedule.is_cancelled %}
+
+                    <a href="{% url 'exam:schedule_reschedule' schedule.pk %}" class="text-blue-600 hover:underline">
+                        Reschedule
+                    </a>
+
+                    <a href="{% url 'exam:schedule_cancel' schedule.pk %}" class="text-red-600 hover:underline">
+                        Cancel
+                    </a>
+
+                    {% else %}
+                    <span class="text-gray-400">Cancelled</span>
+                    {% endif %}
+
+                </td>
+
+            </tr>
+            {% empty %}
+            <tr>
+                <td colspan="6" class="p-4 text-center text-gray-500">
+                    No exams scheduled yet.
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+{% endblock %}
