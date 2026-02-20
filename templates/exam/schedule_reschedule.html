@@ -1,0 +1,59 @@
+{% extends "exam/base.html" %}
+{% block content %}
+
+<div class="max-w-3xl mx-auto bg-white shadow rounded-lg p-6">
+
+    <div class="flex justify-between items-center mb-6">
+        <h2 class="text-2xl font-bold">Reschedule Exam</h2>
+        <a href="{% url 'exam:schedule_list' %}"
+           class="bg-gray-200 px-4 py-2 rounded hover:bg-gray-300">
+            Back
+        </a>
+    </div>
+
+    {% if form.errors %}
+    <div class="mb-4 p-4 bg-red-100 text-red-700 rounded">
+        {{ form.errors }}
+    </div>
+    {% endif %}
+
+    <form method="POST">
+        {% csrf_token %}
+
+        <div class="mb-4">
+            <label class="block mb-1 font-medium">Exam</label>
+            {{ form.exam }}
+        </div>
+
+        <div class="mb-4">
+            <label class="block mb-1 font-medium">Group</label>
+            {{ form.group }}
+        </div>
+
+        <div class="mb-4">
+            <label class="block mb-1 font-medium">Date</label>
+            {{ form.date }}
+        </div>
+
+        <div class="mb-4">
+            <label class="block mb-1 font-medium">Start Time</label>
+            {{ form.start_time }}
+        </div>
+
+        <div class="mb-6">
+            <label class="block mb-1 font-medium">End Time</label>
+            {{ form.end_time }}
+        </div>
+
+        <div class="flex justify-end">
+            <button type="submit"
+                class="bg-indigo-600 text-white px-6 py-2 rounded hover:bg-indigo-700">
+                Update Schedule
+            </button>
+        </div>
+
+    </form>
+
+</div>
+
+{% endblock %}

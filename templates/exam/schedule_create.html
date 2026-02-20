@@ -1,0 +1,84 @@
+{% extends "exam/base.html" %}
+{% block content %}
+
+<div class="max-w-3xl mx-auto bg-white shadow rounded-lg p-6">
+
+    <div class="flex justify-between items-center mb-6">
+        <h2 class="text-2xl font-bold">Schedule Exam</h2>
+        <a href="{% url 'exam:schedule_list' %}" class="text-sm bg-gray-200 px-4 py-2 rounded hover:bg-gray-300">
+            Back
+        </a>
+    </div>
+
+    {% if form.errors %}
+    <div class="mb-4 p-4 bg-red-100 text-red-700 rounded">
+        {{ form.errors }}
+    </div>
+    {% endif %}
+
+    <form method="POST" class="space-y-5">
+        {% csrf_token %}
+
+        <!-- Exam -->
+        <div>
+            <label class="block text-gray-700 font-medium mb-2">
+                Select Exam
+            </label>
+            <div class="border rounded-lg px-3 py-2 focus-within:ring-2 focus-within:ring-indigo-500">
+                {{ form.exam }}
+            </div>
+        </div>
+
+        <!-- Group -->
+        <div>
+            <label class="block text-gray-700 font-medium mb-2">
+                Select Group
+            </label>
+            <div class="border rounded-lg px-3 py-2 focus-within:ring-2 focus-within:ring-indigo-500">
+                {{ form.group }}
+            </div>
+        </div>
+
+        <!-- Date -->
+        <div>
+            <label class="block text-gray-700 font-medium mb-2">
+                Exam Date
+            </label>
+            <div class="border rounded-lg px-3 py-2 focus-within:ring-2 focus-within:ring-indigo-500">
+                {{ form.date }}
+            </div>
+        </div>
+
+        <!-- Start Time -->
+        <div>
+            <label class="block text-gray-700 font-medium mb-2">
+                Start Time
+            </label>
+            <div class="border rounded-lg px-3 py-2 focus-within:ring-2 focus-within:ring-indigo-500">
+                {{ form.start_time }}
+            </div>
+        </div>
+
+        <!-- End Time -->
+        <div>
+            <label class="block text-gray-700 font-medium mb-2">
+                End Time
+            </label>
+            <div class="border rounded-lg px-3 py-2 focus-within:ring-2 focus-within:ring-indigo-500">
+                {{ form.end_time }}
+            </div>
+        </div>
+
+        <div class="flex justify-end pt-4">
+            <button type="submit"
+                class="bg-indigo-600 text-white px-6 py-2 rounded-lg hover:bg-indigo-700 transition duration-200 shadow">
+                Schedule Exam
+            </button>
+        </div>
+
+    </form>
+
+
+</div>
+
+{% endblock %}

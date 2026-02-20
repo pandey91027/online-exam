@@ -1,0 +1,35 @@
+{% extends "exam/base.html" %}
+{% block content %}
+
+<div class="max-w-lg mx-auto bg-white shadow rounded-lg p-6">
+
+    <h2 class="text-xl font-bold text-red-600 mb-4">
+        Cancel Exam Schedule
+    </h2>
+
+    <p class="mb-6">
+        Are you sure you want to cancel
+        <strong>{{ schedule.exam }}</strong>
+        scheduled on {{ schedule.date }}?
+    </p>
+
+    <form method="POST">
+        {% csrf_token %}
+
+        <div class="flex justify-end space-x-3">
+            <a href="{% url 'exam:schedule_list' %}"
+               class="px-4 py-2 bg-gray-200 rounded hover:bg-gray-300">
+                No
+            </a>
+
+            <button type="submit"
+                    class="px-4 py-2 bg-red-600 text-white rounded hover:bg-red-700">
+                Yes, Cancel
+            </button>
+        </div>
+
+    </form>
+
+</div>
+
+{% endblock %}
