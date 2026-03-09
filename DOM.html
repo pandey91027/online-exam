@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h1 id="name">
+        Unknown Name
+    </h1>
+
+    <h1 class='unknown'>
+        Unknown College
+    </h1>
+
+    <h1 class='unknown'>
+        Unknown Address
+    </h1>
+
+
+
+    <script>
+        // getElementById
+        document.getElementById('name').innerText = "Hello im django developer";
+        //getElementByClassName 
+        inner_text = document.getElementsByClassName('unknown')[0];
+        inner_text.innerText = "BNCET Lucknow"
+        inner_add = document.getElementsByClassName('unknown')[1];
+        inner_add.innerText = "Mahanagar Lucknow"
+        console.log(inner_text.innerText)
+        console.log(document.getElementsByTagName('h1')[0].innerText)
+
+        //query selector 
+        console.log(document.querySelector('#name').innerHTML)
+        console.log(document.querySelector('.unknown').innerHTML)
+    </script>
+</body>
+
+</html>

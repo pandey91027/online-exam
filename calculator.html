@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculator</title>
+</head>
+
+<body>
+
+    <h1>Calculator</h1>
+    <hr>
+    <label for="input1">Input No 1</label>
+    <input type="number" id="input1">
+    <br>
+    <br>
+    <label for="input2">Input No 2</label>
+    <input type="number" id="input2">
+
+    <br>
+    <br>
+
+
+
+    <script>
+        function calculator(op) {
+            let input1 = document.getElementById("input1").value
+            let input2 = document.getElementById("input2").value
+            let result = document.getElementById("result")
+
+            if (op == 'add') {
+                result.value = Number(input1) + Number(input2)
+            } else if (op == 'sub') {
+                result.value = Number(input1) - Number(input2)
+
+            } else if (op == 'div') {
+                if (Number(input2) == 0) {
+                    result.value = "Can not devide by Zero"
+                }
+                else {
+                    result.value = Number(input1) / Number(input2)
+                }
+            } else if ("mul") {
+
+            }
+        }
+
+    </script>
+
+
+</body>
+
+</html>

@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Unit Converter</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        text-align: center;
+        margin-top: 50px;
+        background-color: pink;
+      }
+      input,
+      select,
+      button {
+        padding: 8px;
+        margin: 10px;
+      }
+      .result {
+        margin-top: 20px;
+        font-weight: bold;
+        color: darkblue;
+      }
+    </style>
+  </head>
+  <body>
+    <h2>Unit Converter</h2>
+
+    <input type="number" id="value" placeholder="Enter value" />
+
+    <select id="unit">
+      <option value="cmToInch">Centimeter → Inch</option>
+      <option value="inchToCm">Inch → Centimeter</option>
+      <option value="meterTokilometer">meter-kilometer</option>
+      <option value=" centermeterTOmeter">centemeter-meter</option>
+    </select>
+
+    <button onclick="convert()">Convert</button>
+
+    <div class="result" id="output"></div>
+
+    <script>
+      function convert() {
+        let value = document.getElementById("value").value;
+        let unit = document.getElementById("unit").value;
+        let result;
+
+        if (unit === "cmToInch") {
+          result = (value / 2.54).toFixed(2) + " inches";
+        } else {
+          result = (value * 2.54).toFixed(2) + " cm";
+        }
+
+        document.getElementById("output").innerText = "Result: " + result;
+      }
+    </script>
+  </body>
+</html>

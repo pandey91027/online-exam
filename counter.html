@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Counter</title>
+</head>
+
+<body>
+
+    <br>
+    <br>
+    <input type="text" id="display" value="0" readonly>
+    <br>
+    <br>
+    <button onclick="decrement()">&nbsp;&nbsp;&nbsp;-&nbsp;&nbsp;&nbsp;</button>
+    <button onclick="reset()">Reset</button>
+    <button onclick="increment()"> &nbsp;&nbsp;&nbsp;+&nbsp;&nbsp;&nbsp;</button>
+    <br><br>
+    <button onclick="save()"> &nbsp;&nbsp;&nbsp;save&nbsp;&nbsp;&nbsp;</button>
+    <button onclick="load()"> &nbsp;&nbsp;&nbsp;load&nbsp;&nbsp;&nbsp;</button>
+
+
+    <script>
+        counter = 0;
+        function update() {
+            let display = document.getElementById("display");
+            display.value = counter;
+
+        }
+        function increment() {
+            counter++;
+            update()
+        }
+        function decrement() {
+            counter--;
+            if (counter < 0) {
+                counter = 0
+            }
+            update()
+        }
+        function reset() {
+            counter = 0
+            update()
+        }
+        function save() {
+            localStorage.setItem("counter", counter);
+        }
+        function load() {
+            saved = localStorage.getItem("counter");
+            counter = Number(saved)
+            update()
+        }
+
+
+    </script>
+
+</body>
+
+</html>
